@@ -1,0 +1,11 @@
+<div>
+    <p> <%= flash[:notification] %> </p>
+    <h3>Submitted Information</h3>
+    <p>Name: <%= @survey['name'] %></p>
+    <p>Dojo Location: <%= @survey['dojo_location'] %></p>
+    <p>Favorite Language: <%= @survey["fav_lang"] %></p>
+    <p>Comment: <%= @survey["comment"] %></p>
+
+    <a href="/"><button>Go back</button></a>
+    
+</div>
