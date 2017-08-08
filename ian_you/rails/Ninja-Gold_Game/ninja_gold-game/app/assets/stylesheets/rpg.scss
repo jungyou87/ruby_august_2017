@@ -1,0 +1,22 @@
+// Place all the styles related to the rpg controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.box{
+    display: inline-block;
+    text-align: center;
+    width: 200px;
+    border: 1px solid black;
+    margin: 10px 5px;
+}
+
+.logbox{
+    border: 1px solid black;
+}
+
+.logbox p{
+    color : green
+}
+
+p.lost {
+    color : red
+}
