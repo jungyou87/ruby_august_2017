@@ -6,8 +6,23 @@ thead{
     text-align: left;
 }
 th{
-    padding-right: 100px
+    padding-right: 50px
 }
 td{
-    padding-right: 100px;
+    padding-right: 50px;
 }
+#new {
+    width: 350px;
+}
+
+.labels{
+    vertical-align: top;
+    display: inline-block;
+    width: 100px;
+}
+
+.inputs{
+    display: inline-block;
+    width: 150px;
+}
+
