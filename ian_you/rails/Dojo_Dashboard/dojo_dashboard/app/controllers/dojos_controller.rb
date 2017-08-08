@@ -23,6 +23,38 @@ class DojosController < ApplicationController
     end
   end
 
+  def show
+    @dojo = Dojo.find(params[:id])
+    return render 'dojos/dojo.html.erb'
+  end
+
+  def edit
+    flash[:message] ||= []
+    @dojo = Dojo.find(params[:id])
+    return render 'dojos/edit.html.erb'
+  end
+
+  def update
+    @id = params[:id]
+    @dojo = Dojo.update(@id, dojo_params)
+
+    if  @dojo.errors.full_messages != [] 
+      flash[:message] = @dojo.errors.full_messages
+      return redirect_to "/dojos/#{@id}/edit"
+    
+    else
+      # flash[:success] ="Successfully created" 
+      return redirect_to '/dojos'
+    end
+
+  end
+
+  def destroy
+    Dojo.find(params[:id]).destroy
+    return redirect_to '/dojos'
+
+  end
+
   private
     def dojo_params
       params.require(:dojo).permit(:branch, :street, :city, :state)
