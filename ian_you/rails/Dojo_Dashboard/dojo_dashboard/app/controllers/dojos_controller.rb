@@ -24,18 +24,19 @@ class DojosController < ApplicationController
   end
 
   def show
-    @dojo = Dojo.find(params[:id])
+    @dojo = Dojo.find(params[:dojo_id])
+    @students = Student.joins(:dojo).where("dojos.id = #{params[:dojo_id]}")
     return render 'dojos/dojo.html.erb'
   end
 
   def edit
     flash[:message] ||= []
-    @dojo = Dojo.find(params[:id])
+    @dojo = Dojo.find(params[:dojo_id])
     return render 'dojos/edit.html.erb'
   end
 
   def update
-    @id = params[:id]
+    @id = params[:dojo_id]
     @dojo = Dojo.update(@id, dojo_params)
 
     if  @dojo.errors.full_messages != [] 
@@ -50,7 +51,7 @@ class DojosController < ApplicationController
   end
 
   def destroy
-    Dojo.find(params[:id]).destroy
+    Dojo.find(params[:dojo_id]).destroy
     return redirect_to '/dojos'
 
   end
