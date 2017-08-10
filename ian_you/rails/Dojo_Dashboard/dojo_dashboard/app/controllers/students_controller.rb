@@ -7,23 +7,18 @@ class StudentsController < ApplicationController
     end
 
     def create
-        @dojos = Dojo.all
         @dojo = Dojo.find(params[:dojo_id])
         flash[:message] ||= []
-
-
         @student = Student.create(student_params)
-        
         p @student
         if  @student.errors.full_messages != [] 
             flash[:message] = @student.errors.full_messages
 
-            return redirect_to "/dojos/#{@dojo[:dojo_id]}/students/new"
+            return redirect_to "/dojos/#{params[:dojo_id]}/students/new"
         
         else
             flash[:success] ="Successfully created" 
-            @dojo.students << @student
-            return redirect_to "/dojos/#{@dojo[:dojo_id]}"
+            return redirect_to "/dojos/#{params[:dojo_id]}"
             
         end
 
