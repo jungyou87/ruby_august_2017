@@ -1,0 +1,64 @@
+<% content_for :all_posts do %>
+
+<div>
+<h1>All Users</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Author</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @posts.each do |post| %>
+        <tr>
+            <td><%= post.title  %></td>
+            <td><%= post.content %></td>
+            <td><%= post.user.first_name %> <%= post.user.last_name  %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+</div>
+
+<% end %>
+
+<% content_for :new_post do %>
+
+    <% for message in flash[:message] %>
+        <p> <%= message %> </p>
+    <% end %>
+
+<div>
+<form action="/posts" method="post">
+    <input type="hidden" name="authenticity_token" value="form_authenticity_token">
+
+    <h1>New Post</h1>
+    <label>Title</label>
+    <p><input type="text" name="post[title]"></p>
+
+    <label>Content</label>
+    <p><textarea name="post[content]"></textarea></p>
+
+    <label>Author</label> &nbsp;  <select name="post[user_id]">
+    <% @users.each do |user| %>
+        <option value="<%= user.id %>"> <%= user.first_name %> <%= user.last_name %> </option>
+    <% end %>
+    </select>
+
+    <p><input type="submit" value="Submit"></p>
+
+
+
+</form>
+</div>
+
+<% end %>
+
+<% content_for :all_users do %>
+
+<h1>Go to Users Page</h1>
+<a href="/users/index"><button>All Users</button></a>
+
+<% end %>
